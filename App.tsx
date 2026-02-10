@@ -33,7 +33,7 @@ const App: React.FC = () => {
       setAnalysisResult(result);
       setAppState(AppState.SHOW_ANALYSIS);
     } catch (err) {
-      setError("Không thể kết nối với AI. Vui lòng thử lại sau.");
+      setError(err instanceof Error ? err.message : "Không thể kết nối với AI. Vui lòng kiểm tra lại API Key.");
       setAppState(AppState.INPUT);
     }
   };
@@ -49,7 +49,7 @@ const App: React.FC = () => {
       setPlanResult(result);
       setAppState(AppState.SHOW_PLAN);
     } catch (err) {
-      setError("Có lỗi khi tạo giáo án. Vui lòng thử lại.");
+      setError(err instanceof Error ? err.message : "Đã xảy ra lỗi khi phân tích. Vui lòng kiểm tra lại API Key và thử lại.");
       setAppState(AppState.SHOW_ANALYSIS);
     }
   };
